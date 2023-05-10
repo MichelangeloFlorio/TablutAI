@@ -3,7 +3,7 @@ package it.unibo.ai.didattica.competition.tablut.tablutai.heuristic;
 import java.util.Arrays;
 import java.util.List;
 
-import it.unibo.ai.didattica.competition.tablut.algise.domain.Coordinate;
+import it.unibo.ai.didattica.competition.tablut.tablutai.domain.Coordinate;
 import it.unibo.ai.didattica.competition.tablut.domain.State;
 
 public class TablutAIBlackHeuristic {

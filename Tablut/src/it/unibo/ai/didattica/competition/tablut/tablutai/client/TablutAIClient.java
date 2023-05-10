@@ -3,7 +3,7 @@ package it.unibo.ai.didattica.competition.tablut.tablutai.client;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import it.unibo.ai.didattica.competition.tablut.algise.euristica.AlgiseAlphaBeta;
+import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIAlphaBeta;
 import it.unibo.ai.didattica.competition.tablut.client.TablutClient;
 import it.unibo.ai.didattica.competition.tablut.domain.Action;
 import it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut;
@@ -19,9 +19,9 @@ public class TablutAIClient extends TablutClient {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String name = "Algise" ; 
+		String name = "TablutAI" ; 
 		if (args.length != 3) {
-			System.out.println("ALGISE dice : NO! Moc sa fet!! Brisa fer l'esen!! Gnurant!!");
+			System.out.println("TABLUTAI dice : NO! Moc sa fet!! Brisa fer l'esen!! Gnurant!!");
 			System.out.println("USAGE: Il pistolotto dev'essere invocato ./runmyplayer.sh <WHITE|BLACK> <timeout> <ip_server>");
 			System.exit(-1);
 		} else {
@@ -29,7 +29,7 @@ public class TablutAIClient extends TablutClient {
 			int timeout = Integer.parseInt(args[1]);
 			String ipServer = args[2];
 			System.out.println(timeout);
-			AlgiseClient client = new AlgiseClient(player,name,timeout,ipServer);
+			TablutAIClient client = new TablutAIClient(player,name,timeout,ipServer);
 			client.run();
 		}
 		
@@ -189,7 +189,7 @@ public class TablutAIClient extends TablutClient {
 	}
 
 	private Action findBestMove(GameAshtonTablut gameRules, State state) {
-		AlgiseAlphaBeta search = new AlgiseAlphaBeta(gameRules, Double.MIN_VALUE, Double.MAX_VALUE, this.timeout-2);
+		TablutAIAlphaBeta search = new TablutAIAlphaBeta(gameRules, Double.MIN_VALUE, Double.MAX_VALUE, this.timeout-2);
 		return search.makeDecision(state);
 	}
 

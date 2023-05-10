@@ -35,7 +35,7 @@ public class TablutAIBlackClient {
 		else
 		{
 			System.out.println("TABLUTAI BLACK CLIENT: INVOCAZIONE ERRATA.");
-			System.out.println("Invocazione: AlgiseBlackClient [timeout] [ip]");
+			System.out.println("Invocazione: TablutAIBlackClient [timeout] [ip]");
 			System.exit(1);
 		}
 		TablutAIClient.main(array);
