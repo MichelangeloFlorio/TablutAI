@@ -6,6 +6,8 @@ Tablut project developed for the Tablut Students Challenge
 
 ## Results
 
+## Team: TablutAI
+
 ## Credits
 
 
