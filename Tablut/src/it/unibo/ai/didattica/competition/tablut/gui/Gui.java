@@ -12,8 +12,7 @@ import it.unibo.ai.didattica.competition.tablut.domain.State;
  */
 public class Gui {
 	
-	Background background;
-	JFrame frame;
+	Background frame;
 	private int game;
 	
 	public Gui(int game) {
@@ -29,7 +28,7 @@ public class Gui {
 	 * @param aState represent the new state of the game
 	 */
 	public void update(State aState) {
-		background.setaState(aState);
+		frame.setaState(aState);
 		frame.repaint();
 	}	
 	
@@ -39,30 +38,29 @@ public class Gui {
 	private void initGUI() {
 		switch (this.game) {
 		case 1:
-			background = new BackgroundTablut();
+			frame = new BackgroundTablut();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setSize(280, 300);
 			break;
 		case 2:
-			background = new BackgroundTablut();
+			frame = new BackgroundTablut();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setSize(280, 300);
 			break;
 		case 3:
-			background = new BackgroundBrandub();
+			frame = new BackgroundBrandub();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setSize(280, 300);
 			break;
 		case 4:
-			background = new BackgroundTablut();
+			frame = new BackgroundTablut();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setSize(280, 300);
 			break;
 		default:
 			System.out.println("Error in GUI init");
 			System.exit(4);
 		}
-
-		frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// Più performante fare paint su
-		// JPanel (cioè background) che
-		// direttamente sul frame
-		frame.getContentPane().add(background);
-		frame.pack();
-		frame.setLocationByPlatform(true);
 	}
 	
 	/**
@@ -71,22 +69,22 @@ public class Gui {
 	private void show() {
 		switch (game) {
 		case 1:
-			frame.setSize(415, 415);
+			frame.setSize(370, 395);
 			frame.setTitle("ClassicTablut");
 			frame.setVisible(true);
 			break;
 		case 2:
-			frame.setSize(415, 415);
+			frame.setSize(370, 395);
 			frame.setTitle("ModernTablut");
 			frame.setVisible(true);
 			break;
 		case 3:
-			frame.setSize(415, 415);
+			frame.setSize(300, 330);
 			frame.setTitle("Brandub");
 			frame.setVisible(true);
 			break;
 		case 4:
-			frame.setSize(390, 435);
+			frame.setSize(370, 395);
 			frame.setTitle("Tablut");
 			frame.setVisible(true);
 			break;

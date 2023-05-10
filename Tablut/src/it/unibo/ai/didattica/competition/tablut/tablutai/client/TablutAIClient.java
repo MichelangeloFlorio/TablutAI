@@ -3,12 +3,12 @@ package it.unibo.ai.didattica.competition.tablut.tablutai.client;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIAlphaBeta;
 import it.unibo.ai.didattica.competition.tablut.client.TablutClient;
 import it.unibo.ai.didattica.competition.tablut.domain.Action;
 import it.unibo.ai.didattica.competition.tablut.domain.GameAshtonTablut;
 import it.unibo.ai.didattica.competition.tablut.domain.State;
 import it.unibo.ai.didattica.competition.tablut.domain.StateTablut;
+import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIAlphaBeta;
 public class TablutAIClient extends TablutClient {
 
 	
@@ -21,8 +21,7 @@ public class TablutAIClient extends TablutClient {
 	public static void main(String[] args) throws IOException {
 		String name = "TablutAI" ; 
 		if (args.length != 3) {
-			System.out.println("TABLUTAI dice : NO! Moc sa fet!! Brisa fer l'esen!! Gnurant!!");
-			System.out.println("USAGE: Il pistolotto dev'essere invocato ./runmyplayer.sh <WHITE|BLACK> <timeout> <ip_server>");
+			System.out.println("USAGE: lo script dev'essere invocato nel seguente modo: ./runmyplayer.sh <WHITE|BLACK> <timeout> <ip_server>");
 			System.exit(-1);
 		} else {
 			String player = args[0] ;
@@ -47,7 +46,7 @@ public class TablutAIClient extends TablutClient {
 		}
 		
 		//Algise saluta
-		this.salutaAlgise();
+		this.saluta();
 		
 		// Il bianco deve fare la prima mossa
 		State state = new StateTablut();
@@ -173,7 +172,7 @@ public class TablutAIClient extends TablutClient {
 	/**
 	 * Print some greeting
 	 */
-	public void salutaAlgise() {
+	public void saluta() {
 		System.out.println("\r\n"
 				+ " ________  ___       ________  ___  ________  _______      \r\n"
 				+ "|\\   __  \\|\\  \\     |\\   ____\\|\\  \\|\\   ____\\|\\  ___ \\     \r\n"
