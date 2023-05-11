@@ -12,8 +12,9 @@ public class TablutAIBlackHeuristic {
 	private List<String> camps; // cittadelle
 	private List<String> escape; // stars
 	private Coordinate kingCoordinate;
+	private static int LOOSE = -1;
+	private static int WIN = 1;
 	
-
 	// Parametri da calcolare
 	private int pawnsB; // pedine NERE attuali
 	private int pawnsW; // pedine BIANCHE attuali
@@ -21,16 +22,13 @@ public class TablutAIBlackHeuristic {
 	private int freeWayForKing; // vie libere per il re
 	private int totalDistanceFromBlackThroneCamps; // per stabilire se stiamo accerchiando i bianchi
 	
-	//Pesi
+	// Pesi
 	private double BLACK_WEIGHT = 6.0;
 	private double WHITE_WEIGHT = 10.0;
 	private double FREE_WAY_FOR_KING = 15.0;
 	private double KING_BONUS = 9.0 ;
 	private double ACCERCHIAMENTO_WEIGHT = 900;
 	
-
-	private static int LOOSE = -1;
-	private static int WIN = 1;
 	
 	public TablutAIBlackHeuristic (State state) {
 		this.state = state;
@@ -59,29 +57,28 @@ public class TablutAIBlackHeuristic {
 
 		double result = 0;
 		
-		result+=this.pawnsB*this.BLACK_WEIGHT;
-		result-=this.pawnsW*this.WHITE_WEIGHT;
-		result+=this.blackNearKing*this.BLACK_WEIGHT;
-		result-=this.freeWayForKing*this.FREE_WAY_FOR_KING;
-		result+=this.ACCERCHIAMENTO_WEIGHT/this.totalDistanceFromBlackThroneCamps;
+		result += this.pawnsB * this.BLACK_WEIGHT;
+		result -= this.pawnsW * this.WHITE_WEIGHT;
+		result += this.blackNearKing * this.BLACK_WEIGHT;
+		result -= this.freeWayForKing * this.FREE_WAY_FOR_KING;
+		result += this.ACCERCHIAMENTO_WEIGHT / this.totalDistanceFromBlackThroneCamps;
 
 		return result;
 	}
 
 	private void resetFields() {
-		this.kingCoordinate=null;
-		this.pawnsB=0;
-		this.pawnsW=0;
-		this.blackNearKing=0;
+		this.kingCoordinate = null;
+		this.pawnsB = 0;
+		this.pawnsW = 0;
+		this.blackNearKing = 0;
 		this.freeWayForKing = 0;
 	}
 	
 	private int extractFields() {
-		
 		for (int i = 0; i < state.getBoard().length; i++) {
 			for (int j = 0; j <state.getBoard()[i].length; j++) {
 				
-				// CALCOLO PEDINE NELLA BOARD
+				// Calcolo delle pedine nella board
 				if(state.getPawn(i, j).equalsPawn(State.Pawn.WHITE.toString())) {
 					pawnsW++;
 					this.totalDistanceFromBlackThroneCamps+=getDistanceFromBlackThroneCamps(i, j);
@@ -89,17 +86,16 @@ public class TablutAIBlackHeuristic {
 				else if (state.getPawn(i, j).equalsPawn(State.Pawn.KING.toString())){
 					pawnsW++;
 					kingCoordinate = new Coordinate(i,j);
-					this.totalDistanceFromBlackThroneCamps+=getDistanceFromBlackThroneCamps(i, j)*this.KING_BONUS;
+					this.totalDistanceFromBlackThroneCamps += getDistanceFromBlackThroneCamps(i, j) * this.KING_BONUS;
 				}
 				else if (state.getPawn(i, j).equalsPawn(State.Pawn.BLACK.toString())) {
 					pawnsB++;
 				}
-			} // for j
-		} // for i
+			}
+		}
 		
-		// STATISTICHE RE
-		if(kingCoordinate==null)
-		{
+		// Statistiche re
+		if(kingCoordinate==null) {
 			return WIN;
 		}
 		else if (escape.contains(state.getBox(this.kingCoordinate.getX(), this.kingCoordinate.getY()))) {
@@ -112,7 +108,7 @@ public class TablutAIBlackHeuristic {
 		
 		
 		
-		// PEDINE NERE E BIANCHE VICINE AL RE
+		// Pedine nere e bianche vicino al re
 		if(x > 0) {
 			if (this.state.getPawn(x-1, y).equalsPawn(State.Pawn.BLACK.toString())) blackNearKing++;
 		}
@@ -126,7 +122,7 @@ public class TablutAIBlackHeuristic {
 			if (this.state.getPawn(x, y+1).equalsPawn(State.Pawn.BLACK.toString())) blackNearKing++;
 		}
 		
-		// VIE LIBERE PER IL RE
+		// Vie libere per il re
 		if(x < 3 || x > 5) {
 			if(checkLeft(x,y)) freeWayForKing++;
 			if(checkRight(x,y)) freeWayForKing++;
@@ -182,31 +178,20 @@ public class TablutAIBlackHeuristic {
 	}
 
 
-	/**
-	 * Metodo che calcola la distanza di una pedina da altre pedine nere, trono, accampamenti
-	 * @param row
-	 * @param column
-	 * @return total distance
-	 */
-
-	
+	//Metodo che calcola la distanza di una pedina da altre pedine nere, trono, accampamenti
 	public int getDistanceFromBlackThroneCamps(int row, int column) {
 		int distanceResult = 0 ; 
 		
 		// calcolo distanza SOPRA
-		
 		distanceResult += getDistanceUp(row,column);
 		
-		//SOTTO
-		
+		// calcolo distanza SOTTO
 		distanceResult += getDistanceDown(row,column);
 		
-		//DESTRA
-		
+		// calcolo distanza DESTRA
 		distanceResult += getDistanceRight(row,column);
 		
-		//SINISTRA
-		
+		// calcolo distanza SINISTRA
 		distanceResult += getDistanceLeft(row,column);
 		
 		return distanceResult;
@@ -223,7 +208,6 @@ public class TablutAIBlackHeuristic {
 			else 
 				dstResult++;
 		}
-		
 		return dstResult;
 	}
 	
@@ -238,7 +222,6 @@ public class TablutAIBlackHeuristic {
 			else 
 				dstResult++;
 		}
-		
 		return dstResult;
 	}
 	
@@ -254,7 +237,6 @@ public class TablutAIBlackHeuristic {
 			else 
 				dstResult++;
 		}
-		
 		return dstResult;
 	}
 	
@@ -270,7 +252,6 @@ public class TablutAIBlackHeuristic {
 			else 
 				dstResult++;
 		}
-		
 		return dstResult;
 	}
 	

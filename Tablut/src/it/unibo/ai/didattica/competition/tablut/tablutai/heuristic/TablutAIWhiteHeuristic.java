@@ -15,6 +15,8 @@ public class TablutAIWhiteHeuristic {
 	private List<String> escape;
 	private List<String> nearsThrone;
 	private String throne;
+	private static int LOOSE = -1;
+	private static int WIN = 1;
 	
 
 	private double[][] pesi_posizione_re=new double[][]
@@ -39,16 +41,13 @@ public class TablutAIWhiteHeuristic {
 			private double CRStartegicheFree;
 
 			
-			// PESI
+			// Pesi
 			private double REMAINING_BLACK_WEIGHT = 12.0;
 			private double REMAINING_WHITE_WEIGHT = 22.0;
 			private double FREE_WAY_KING_WEIGHT = 50.0;
 			private double BLACK_NEAR_KING_WEIGHT = 6.0;
 			private double POSITION_WEIGHT = 0.4;
 			private double KING_POSITION_WEIGHT = 2;
-
-			private static int LOOSE = -1;
-			private static int WIN = 1;
 
 			public TablutAIWhiteHeuristic (State state) {
 				this.state = state;
@@ -71,23 +70,21 @@ public class TablutAIWhiteHeuristic {
 				resetFields();	
 				int state = extractFields();
 
-				// se non c'� il re ho perso
-				if(state == LOOSE)
-				{
+				// se non c'e' il re ho perso
+				if(state == LOOSE) {
 					
 					return Double.MIN_VALUE;
-				}// se il re � in escape ho vinto
-				else if (state == WIN)
-				{
+				}// se il re e' in escape ho vinto
+				else if (state == WIN) {
 					
 					return Double.MAX_VALUE;
 				}
-				result+=(16- pawnsB)*REMAINING_BLACK_WEIGHT;
-				result+= pawnsW*REMAINING_WHITE_WEIGHT;
-				result+= freeWayForKing*FREE_WAY_KING_WEIGHT;
-				result-= blackNearKing*BLACK_NEAR_KING_WEIGHT;
-				result+= this.positions_sum*POSITION_WEIGHT;
-				result+=CRStartegicheFree;
+				result += (16- pawnsB) * REMAINING_BLACK_WEIGHT;
+				result += pawnsW * REMAINING_WHITE_WEIGHT;
+				result += freeWayForKing * FREE_WAY_KING_WEIGHT;
+				result -= blackNearKing * BLACK_NEAR_KING_WEIGHT;
+				result += this.positions_sum * POSITION_WEIGHT;
+				result += CRStartegicheFree;
 
 				return result;
 			}
@@ -121,21 +118,19 @@ public class TablutAIWhiteHeuristic {
 						else if (state.getPawn(i, j).equalsPawn(State.Pawn.BLACK.toString())) {
 							pawnsB++;
 						}
+					} 
+				} 
 
-
-					} // for j
-				} // for i
-
-				// STATISTICHE RE
-				// Se non c'� il re => HO PERSO (termino)
+				// Statistiche re
+				// Se non c'e' il re ho perso
 				if(this.kingCoordinate==null) {
 					return LOOSE;
-				}// Se il re � salvo => HO VINTO (termino)
+				}// Se il re e' salvo ho vinto
 				else if (escape.contains(state.getBox(this.kingCoordinate.getX(), this.kingCoordinate.getY()))) {
 					return WIN;
 				}
 
-				// PEDINE NERE VICINE AL RE
+				// Pedine nere vicino al re
 				int x = kingCoordinate.getX();
 				int y = kingCoordinate.getY();
 				if(x > 0) {
@@ -156,7 +151,7 @@ public class TablutAIWhiteHeuristic {
 				}
 
 
-				// VIE LIBERE PER IL RE
+				// Vie libere per il re
 				if(x < 3 || x > 5) {
 					if(checkLeft(x,y)) freeWayForKing++;
 					if(checkRight(x,y)) freeWayForKing++;

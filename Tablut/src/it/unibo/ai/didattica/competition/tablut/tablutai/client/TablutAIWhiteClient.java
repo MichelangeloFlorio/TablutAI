@@ -7,42 +7,33 @@ import java.net.UnknownHostException;
 public class TablutAIWhiteClient {
 	
 	public static void main(String[] args) throws UnknownHostException, ClassNotFoundException, IOException {
-		String[] array=null;
-		for(int i=0; i<args.length; i++)
-		{
+		String[] s = null;
+		
+		for(int i = 0; i < args.length; i++){
 			System.out.println(args[i]);
 		}
 		
-		if(args.length==0)
-		{
-			/*
-			 * Invocazione senza argomenti, setto i parametri di default per giocare in locale
-			 */
+		if(args.length == 0){
+			//Invocazione senza argomenti, setto i parametri di default per giocare in locale
 			System.out.println("Invocazione senza argomenti, settaggio a default");
-			array = new String[]{"WHITE", "60", "localhost"};
+			s = new String[]{"WHITE", "60", "localhost"};
 		}
-		else if(args.length==1)
-		{
-			/*
-			 * Uso un solo argomento, che in questo caso � il timeout. Gli altri 2 sono lasciati a default
-			 */
+		else if(args.length == 1){
+			//Uso un solo argomento, che in questo caso � il timeout. Gli altri 2 sono lasciati a default
 			System.out.println("Invocazione ad un argomento, ricevuto timeout");
-			array = new String[]{"WHITE", args[0], "localhost"};
+			s = new String[]{"WHITE", args[0], "localhost"};
 		}
-		else if(args.length==2)
-		{
-			/*
-			 * Invocazione con 2 argomenti: timeout e ip server
-			 */
+		else if(args.length == 2){
+			//Invocazione con 2 argomenti: timeout e ip server
 			System.out.println("Invocazione ad un argomento, ricevuto timeout ed ip server");
-			array = new String[]{"WHITE", args[0], args[1]};
+			s = new String[]{"WHITE", args[0], args[1]};
 		}
-		else
-		{
+		else {
 			System.out.println("TABLUTAI WHITE CLIENT: INVOCAZIONE ERRATA.");
 			System.out.println("Invocazione: TablutAIBlackClient [timeout] [ip]");
+			System.exit(1);
 		}
-		TablutAIClient.main(array);
+		TablutAIClient.main(s);
 	}
 
 

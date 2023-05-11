@@ -15,10 +15,10 @@ public class TablutAIAlphaBeta extends IterativeDeepeningAlphaBetaSearch<State, 
 
 	@Override
 	protected double eval(State state, State.Turn player) {
-		// needed to make heuristicEvaluationUsed = true, if the state evaluated isn't terminal
+		// Needed to make heuristicEvaluationUsed = true, if the state evaluated isn't terminal
 		super.eval(state, player);
 
-		// return heuristic value for given state
+		// Return heuristic value for given state
 		return game.getUtility(state, player);
 	}
 
