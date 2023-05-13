@@ -48,7 +48,7 @@ public class TablutAIClient extends TablutClient {
 		State state = new StateTablut();
 		state.setTurn(State.Turn.WHITE);
 		GameAshtonTablut gameRules = null;
-		
+		System.out.println("You are player " + this.getPlayer().toString() + "!");
 		// Impostiamo le regole del gioco
 		if(this.getPlayer().equals(State.Turn.WHITE)){
 			gameRules = new GameAshtonTablut(99, 0, "logs", this.getName(), "blackOpponent");
@@ -65,7 +65,7 @@ public class TablutAIClient extends TablutClient {
 				e1.printStackTrace();
 				System.exit(1);
 			}
-
+			state = this.getCurrentState();
 			// Se sono WHITE
 			if (this.getPlayer().equals(State.Turn.WHITE)) {
 
@@ -111,7 +111,7 @@ public class TablutAIClient extends TablutClient {
 			else {
 
 				// Se è il mio turno (BLACK)
-				if (this.getCurrentState().getTurn().equals(StateTablut.Turn.BLACK)) {
+				if (state.getTurn().equals(StateTablut.Turn.BLACK)) {
 
 					System.out.println("\n Cercando la prossima mossa... ");
 

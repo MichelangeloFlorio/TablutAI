@@ -15,15 +15,17 @@ public class TablutAIAlphaBeta extends IterativeDeepeningAlphaBetaSearch<State, 
 
 	@Override
 	protected double eval(State state, State.Turn player) {
+		//System.out.println(player);
+		//System.out.println(state);
 		// Needed to make heuristicEvaluationUsed = true, if the state evaluated isn't terminal
 		super.eval(state, player);
-
 		// Return heuristic value for given state
 		return game.getUtility(state, player);
 	}
 
 	@Override
 	public Action makeDecision(State state) {
+		//System.out.println(state);
 		Action a = super.makeDecision(state);
 		System.out.println("Explored a total of " + getMetrics().get(METRICS_NODES_EXPANDED) + " nodes, reaching a depth limit of " + getMetrics().get(METRICS_MAX_DEPTH));
 		return  a;

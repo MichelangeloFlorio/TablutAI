@@ -16,6 +16,8 @@ import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 import it.unibo.ai.didattica.competition.tablut.domain.State.Turn;
 import it.unibo.ai.didattica.competition.tablut.exceptions.*;
 import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIBlackHeuristic;
+import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIHeuristicBlack;
+import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIHeuristicWhite;
 import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIWhiteHeuristic;
 
 /**
@@ -1100,10 +1102,12 @@ public class GameAshtonTablut implements Game,aima.core.search.adversarial.Game<
 			return Double.NEGATIVE_INFINITY;
 		
 		if (turn.equals(State.Turn.WHITE)) {
-			TablutAIWhiteHeuristic tablutH= new TablutAIWhiteHeuristic(state);
+			//TablutAIWhiteHeuristic tablutH= new TablutAIWhiteHeuristic(state);
+			TablutAIHeuristicWhite tablutH = new TablutAIHeuristicWhite(state);
 			return  tablutH.evaluateState();
 		} else {
-			TablutAIBlackHeuristic tablutH= new TablutAIBlackHeuristic(state);
+			//TablutAIBlackHeuristic tablutH= new TablutAIBlackHeuristic(state);
+			TablutAIHeuristicBlack tablutH = new TablutAIHeuristicBlack(state);
 			return  tablutH.evaluateState();
 		}
 	}
