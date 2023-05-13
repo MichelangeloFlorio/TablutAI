@@ -6,11 +6,11 @@ public class TablutAIHeuristicBlack {
 
     //la nostra funzione euristica !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    private static final int PESO_PEDONI_BIANCHI = -2;
-    private static final int PESO_PEDONI_NERI = 1;
+    private static final int PESO_PEDONI_BIANCHI = -4;
+    private static final int PESO_PEDONI_NERI = 2;
     private static final int PESO_STRADA_LIBERA_RE = -40;
-    private static final int PESO_PEDONI_IN_LINEA_RE = 10;
-    private static final int PESO_PEDONI_ATTACCATI_RE = 30;
+    private static final int PESO_PEDONI_IN_LINEA_RE = 5;
+    private static final int PESO_PEDONI_ATTACCATI_RE = 10;
     private static final int PESO_RE_FUGGITO = -200;
     private static final int PESO_RE_UCCISO = 200;
 
