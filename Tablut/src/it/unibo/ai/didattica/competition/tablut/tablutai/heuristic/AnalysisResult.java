@@ -1,5 +1,7 @@
 package it.unibo.ai.didattica.competition.tablut.tablutai.heuristic;
 
+import it.unibo.ai.didattica.competition.tablut.tablutai.domain.Coordinate;
+
 public class AnalysisResult {
 
     public static final int VINCE_BIANCO = 1;
@@ -12,6 +14,7 @@ public class AnalysisResult {
     private int neriInLineaRe = 0;
     private int neriAttaccatiRe = 0;
     private int vincitore = NESSUN_VINCITORE;
+    private Coordinate posRe;
 
     public AnalysisResult(){}
 
@@ -69,5 +72,13 @@ public class AnalysisResult {
 
     public void setVincitore(int vincitore) {
         this.vincitore = vincitore;
+    }
+
+    public Coordinate getPosRe() {
+        return posRe;
+    }
+
+    public void setPosRe(Coordinate posRe) {
+        this.posRe = posRe;
     }
 }

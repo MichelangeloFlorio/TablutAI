@@ -1,21 +1,17 @@
 package it.unibo.ai.didattica.competition.tablut.tablutai.heuristic;
 
 import it.unibo.ai.didattica.competition.tablut.domain.State;
+import it.unibo.ai.didattica.competition.tablut.tablutai.domain.Coordinate;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class HeuristicUtil {
-/*
-    private static final List<String> escapes = Arrays.asList("a2", "a3", "a7", "a8", "b1", "b9", "c1", "c9", "g1", "g9", "h1", "h9", "i2", "i3",
-            "i7", "i8"); //lista delle caselle con le vie di fuga
 
+    private static final List<String> camps = Arrays.asList("a4", "a5", "a6", "b5", "d1", "e1", "f1", "e2", "i4", "i5", "i6", "h5", "d9",
+						"e9", "f9", "e8");
 
- */
     private State state;
-    private int xTrone = 4;
-    private int yTrone = 4;
-
 
     public State getState() {
         return state;
@@ -27,6 +23,7 @@ public class HeuristicUtil {
 
     public HeuristicUtil(State state){
         this.state=state;
+
     }
 
     public AnalysisResult evalState() {
@@ -45,6 +42,7 @@ public class HeuristicUtil {
                 } else if (state.getPawn(i, j).equalsPawn(State.Pawn.KING.toString())) {
                     reNonTrovato=false;
                     //in caso di re valutare come la sua riga e colonna
+                    res.setPosRe(new Coordinate(i,j));
 
                     checkRowColKing(res, i, j);
 
@@ -79,7 +77,7 @@ public class HeuristicUtil {
             if(i == x-1 && state.getPawn(i, y).equalsPawn(State.Pawn.BLACK.toString())){
                 neriAttaccatiRe++;
             }
-            if(!state.getPawn(i, y).equalsPawn(State.Pawn.EMPTY.toString())){
+            if(!state.getPawn(i, y).equalsPawn(State.Pawn.EMPTY.toString()) || camps.contains(state.getBox(i, y))){
                 libero=false;
             }
         }
@@ -96,7 +94,7 @@ public class HeuristicUtil {
             if(i == x+1 && state.getPawn(i, y).equalsPawn(State.Pawn.BLACK.toString())){
                 neriAttaccatiRe++;
             }
-            if(!state.getPawn(i, y).equalsPawn(State.Pawn.EMPTY.toString())){
+            if(!state.getPawn(i, y).equalsPawn(State.Pawn.EMPTY.toString()) || camps.contains(state.getBox(i, y))){
                 libero=false;
             }
         }
@@ -116,7 +114,7 @@ public class HeuristicUtil {
             if(j == y-1 && state.getPawn(x, j).equalsPawn(State.Pawn.BLACK.toString())){
                 neriAttaccatiRe++;
             }
-            if(!state.getPawn(x, j).equalsPawn(State.Pawn.EMPTY.toString())){
+            if(!state.getPawn(x, j).equalsPawn(State.Pawn.EMPTY.toString()) || camps.contains(state.getBox(x, j))){
                 libero=false;
             }
         }
@@ -133,7 +131,7 @@ public class HeuristicUtil {
             if(j == y+1 && state.getPawn(x, j).equalsPawn(State.Pawn.BLACK.toString())){
                 neriAttaccatiRe++;
             }
-            if(!state.getPawn(x, j).equalsPawn(State.Pawn.EMPTY.toString())){
+            if(!state.getPawn(x, j).equalsPawn(State.Pawn.EMPTY.toString()) || camps.contains(state.getBox(x, j))){
                 libero=false;
             }
         }
