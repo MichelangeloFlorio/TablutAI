@@ -1100,11 +1100,11 @@ public class GameAshtonTablut implements Game,aima.core.search.adversarial.Game<
 			return Double.NEGATIVE_INFINITY;
 		
 		if (turn.equals(State.Turn.WHITE)) {
-			TablutAIWhiteHeuristic algiseH= new TablutAIWhiteHeuristic(state);
-			return  algiseH.evaluateState();
+			TablutAIWhiteHeuristic tablutH= new TablutAIWhiteHeuristic(state);
+			return  tablutH.evaluateState();
 		} else {
-			TablutAIBlackHeuristic algiseH= new TablutAIBlackHeuristic(state);
-			return  algiseH.evaluateState();
+			TablutAIBlackHeuristic tablutH= new TablutAIBlackHeuristic(state);
+			return  tablutH.evaluateState();
 		}
 	}
 	
