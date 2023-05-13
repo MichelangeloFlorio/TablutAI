@@ -11,22 +11,10 @@ public class HeuristicUtil {
     private static final List<String> camps = Arrays.asList("a4", "a5", "a6", "b5", "d1", "e1", "f1", "e2", "i4", "i5", "i6", "h5", "d9",
 						"e9", "f9", "e8");
 
-    private State state;
 
-    public State getState() {
-        return state;
-    }
 
-    public void setState(State state) {
-        this.state = state;
-    }
 
-    public HeuristicUtil(State state){
-        this.state=state;
-
-    }
-
-    public AnalysisResult evalState() {
+    public static AnalysisResult evalState(State state) {
         int nBianchi = 0;
         int nNeri = 0;
         boolean reNonTrovato = true;
@@ -42,9 +30,8 @@ public class HeuristicUtil {
                 } else if (state.getPawn(i, j).equalsPawn(State.Pawn.KING.toString())) {
                     reNonTrovato=false;
                     //in caso di re valutare come la sua riga e colonna
-                    res.setPosRe(new Coordinate(i,j));
 
-                    checkRowColKing(res, i, j);
+                    checkRowColKing(res, i, j, state);
 
 
                 } else if (state.getPawn(i, j).equalsPawn(State.Pawn.BLACK.toString())) {
@@ -61,7 +48,7 @@ public class HeuristicUtil {
         return res;
     }
 
-    private void checkRowColKing(AnalysisResult res, int x, int y){
+    private static void checkRowColKing(AnalysisResult res, int x, int y, State state){
         //controlla la riga e la colonna col re per vedere se ha vie di fuga libere e quanti neri lo accerchiano
         int vieLibereRe = 0;
         int neriInLineaRe = 0;

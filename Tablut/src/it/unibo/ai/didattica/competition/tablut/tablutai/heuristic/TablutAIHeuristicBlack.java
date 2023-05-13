@@ -16,11 +16,9 @@ public class TablutAIHeuristicBlack {
 
 
     private State state;
-    private HeuristicUtil util;
 
     public TablutAIHeuristicBlack (State state) {
         this.state=state;
-        util = new HeuristicUtil(state);
     }
 
     public double evaluateState() {
@@ -30,16 +28,7 @@ public class TablutAIHeuristicBlack {
         else if(state.getTurn().equalsTurn(String.valueOf(State.Turn.WHITEWIN)))
             return PESO_RE_FUGGITO;
 
-        AnalysisResult res = util.evalState();
-        int sum = 0;
-        /*
-        int vincitore = res.getVincitore();
-        if(vincitore==AnalysisResult.VINCE_NERO)
-            return PESO_RE_UCCISO;
-        else if(vincitore==AnalysisResult.VINCE_BIANCO)
-            return PESO_RE_FUGGITO;
-
-         */
+        AnalysisResult res = HeuristicUtil.evalState(state);
 
         return  res.getnBianchi()*PESO_PEDONI_BIANCHI +
                 res.getnNeri()*PESO_PEDONI_NERI +
