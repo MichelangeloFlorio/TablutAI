@@ -9,4 +9,4 @@ if [[ $#  -ne 3 ]] ; then
    exit 1
 fi
 
-java -jar /home/tablut/tablut/RandomPlayer.jar "$1" "$2" "$3"
+java -jar /home/tablut/Documents/TablutAI.jar "$1" "$2" "$3"
