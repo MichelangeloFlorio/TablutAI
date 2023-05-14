@@ -1,4 +1,4 @@
-package it.unibo.ai.didattica.competition.tablut.tablutai.heuristic;
+package it.unibo.ai.didattica.competition.tablut.rimasugli;
 
 import java.util.Arrays;
 import java.util.List;

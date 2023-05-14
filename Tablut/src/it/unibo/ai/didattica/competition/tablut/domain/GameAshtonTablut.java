@@ -15,10 +15,8 @@ import java.util.logging.SimpleFormatter;
 import it.unibo.ai.didattica.competition.tablut.domain.State.Pawn;
 import it.unibo.ai.didattica.competition.tablut.domain.State.Turn;
 import it.unibo.ai.didattica.competition.tablut.exceptions.*;
-import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIBlackHeuristic;
 import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIHeuristicBlack;
 import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIHeuristicWhite;
-import it.unibo.ai.didattica.competition.tablut.tablutai.heuristic.TablutAIWhiteHeuristic;
 
 /**
  * 
