@@ -4,7 +4,7 @@ Tablut project developed for the Tablut Students Challenge.
 
 ## How to run
 ```
-$ java -jar /home/tablut/tablut/TablutAI.jar <WHITE|BLACK> <timeout> <ip_server>
+java -jar /home/tablut/tablut/TablutAI.jar <WHITE|BLACK> <timeout> <ip_server>
 ```
 ## Results
 
