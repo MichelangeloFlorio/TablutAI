@@ -4,11 +4,15 @@ Tablut project developed for the Tablut Students Challenge.
 
 ## How to run
 ```
-java -jar /home/tablut/tablut/TablutAI.jar <WHITE|BLACK> <timeout> <ip_server>
+java -jar TablutAI.jar <WHITE|BLACK> <timeout> <ip_server>
 ```
 ## Results
 
 ## Team: TablutAI
+- Cristiano Arnaudo
+- Manuel Greco
+- Michelangelo Florio
+- Piero Zamboni
 
 ## Credits
 
