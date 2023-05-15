@@ -1,6 +1,6 @@
 # TablutAI
 Tablut project developed for the Tablut Students Challenge.
-![image](https://github.com/MichelangeloFlorio/TablutAI/assets/109990354/1efb231d-0a11-4893-86c5-5ba1063c4df0)
+![image](https://github.com/MichelangeloFlorio/TablutAI/assets/109990354/316979d8-cc91-4c0f-8049-71add4d1c548)
 
 ## How to run
 You can download the .jar file located [here](https://github.com/MichelangeloFlorio/TablutAI/tree/main/out/artifacts/TablutAI_jar) and run like this:
